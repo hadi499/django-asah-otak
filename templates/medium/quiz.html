@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block scripts %}
+<script src="{% static 'medium/quiz.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block title %}
+{{obj.name}}
+{% endblock title %}
+
+{% block content %}
+
+<div class="row border border-1 shadow border-primary p-3 mt-4">
+  <div class="col">
+    <h3>{{obj.name}}</h3>
+    <h5 class="mb-2">Score untuk lulus: <span class="text-primary">{{obj.required_score_to_pass}}</span></h5>
+   
+    
+  </div>
+  <div class="col">
+    <div class="mt-2"  id="start-lagi"></div> 
+  </div>
+  <div class="col-md-2 d-flex flex-column justify-content-center " >
+    <div class="border border-primary  shadow bg-body-tertiary rounded" style="width: 60px;" id="wrap-timer">
+      <div class="h4 text-center mt-2 " id="timer-box"></div>
+    </div>
+  
+
+    </div>
+</div>
+<div class="row justify-content-center mt-5 border pt-5 border border-primary shadow">
+  <div class="col-md-8 mt-3 ">
+
+    <form id="quiz-form">
+      {% csrf_token %}
+    
+      <div id="quiz-box" class="d-flex justify-content-evenly flex-wrap" ></div>
+
+      <button type="submit" class="btn btn-outline-primary mt-3 ms-3">Kirim Jawaban</button>
+    
+    </form>
+
+ 
+     <div class="h1 mb-2 text-center" id="score-box"></div>
+    
+     <div id="result-box" class="my-5 text-center d-flex flex-column justify-content-center" ></div>
+
+
+
+
+
+  
+  </div>
+</div>
+   
+  
+   
+
+
+{% endblock content %}

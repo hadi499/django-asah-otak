@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load static %}
+{% block scripts %}
+<script src="{% static 'medium/main.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block title %}
+home
+{% endblock title %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-md-8 ">
+    <div class="border shadow " style="width: 700px;">
+      <div class="text-center p-4" style="background-color: #81DAE3 ">
+        <h1 >Game Asah Otak</h1>
+        <h6 >Dibuat Oleh <span class="text-primary">"Po Hadi"</span></h6>
+        <h3>Level : Medium</h3>
+
+      </div>
+
+      <div class="text-start p-4">
+
+        <h4>Selamat datang, {{ user.username }}!</h4>
+        <h6>Klik salah satu menu untuk memulai !</h6>
+        {% for obj in medium_quiz %}
+        <div class="mb-3 mt-3">
+          <button type="button" class="btn btn-primary modal-button"
+            data-bs-toggle="modal"
+            data-bs-target="#quizStartModal"
+            data-pk="{{obj.pk}}"
+            data-quiz="{{obj.name}}"
+            data-questions="{{obj.number_of_questions}}"
+            data-difficulty="{{obj.difficulty}}"
+            data-time="{{obj.time}}"
+            data-pass="{{obj.required_score_to_pass}}" >
+                {{obj.name}}
+          </button>
+    
+        </div>
+        {% endfor%}
+
+        
+        
+      </div>
+      
+      <div class="d-flex justify-content-end mb-3  me-4">
+        <a class="btn btn-outline-dark" href="/">kembali</a>
+      </div> 
+
+    </div>
+   
+
+
+
+
+  </div>
+
+ 
+  <div class="col ms-4">
+    <div>
+      <table class="table border shadow">
+        <thead>
+          <tr class="">
+           
+            <th scope="col">Quiz</th>
+            <th scope="col">User</th>
+            <th scope="col">Nilai</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          {% for result in results %}
+          <tr>
+            <td>{{ result.quiz.name }}</td>
+            <td>{{ result.user.username }}</td>
+            <td>{{ result.score }}</td>           
+          </tr>
+          {% endfor %}
+         
+          
+        </tbody>
+      </table>
+
+      {% if not results %}
+      <p class="text-center text-secondary">Belum ada record data score.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="quizStartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="modal-title-confirm"></h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modal-body-confirm"></div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" id="start-button" class="btn btn-primary">Start</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+{% endblock content %}
