@@ -78,8 +78,8 @@ $.ajax({
         // Menambahkan jawaban ke dalam div pembungkus
         answers.forEach(answer => {
           questionDiv += `
-            <div class="px-3  mb-2 d-flex  gap-3">
-              <input type="radio" class="ans" id="${question}-${answer}" name="${question}" value="${answer}">
+            <div class="px-3  mb-2">
+              <input type="radio" class="ans form-check-input" id="${question}-${answer}" name="${question}" value="${answer}">
               <label for="${question}-${answer}">${answer}</label>
             </div>
           `;

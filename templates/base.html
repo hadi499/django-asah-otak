@@ -19,7 +19,7 @@
   </head>
   <body>
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow">
       <div class="container">
        
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,12 +31,13 @@
             <a class="nav-link rounded tesHover {% block active_menu %}{% endblock active_menu %}" aria-current="page" href="/">Menu</a>
             {% endif %}
             {% if request.user.is_authenticated and request.user.is_superuser %}
-            <a class="nav-link tesHover rounded {% block active_score %}{% endblock active_score %} " aria-current="page" href="{% url 'results-view' %}">Score</a>
+           
             <a class="nav-link tesHover rounded " aria-current="page" href="/admin">Admin</a>
             {% endif %}
           </div>
           <div class="navbar-nav">
-            {% if user.is_authenticated %}           
+            {% if user.is_authenticated %}   
+            <span class="username nav-item nav-link border border-primary text-primary rounded me-5"><b>{{ user.username }}</b></span>        
               <a class="nav-item nav-link tesHover rounded" href="{% url 'logout' %}">Logout</a>
             {% else %}
               <a class="nav-item nav-link tesHover rounded" href="{% url 'login' %}">Login</a>              

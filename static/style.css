@@ -3,6 +3,10 @@
 }
 
 .tesHover:hover{
-  background-color: #F5EFFF;
+  background-color: #9DBDFF;
+}
+
+.username:hover{
+  cursor: pointer;
 }
 

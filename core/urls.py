@@ -8,7 +8,8 @@ from .views import *
 urlpatterns = [
     path('', include('quiz.urls')),
     path('admin/', admin.site.urls),
-    path('word/', include('word.urls')),
+    path('easy/', include('easy.urls')),
+    path('medium/', include('medium.urls')),  
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('accounts/login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
 ]

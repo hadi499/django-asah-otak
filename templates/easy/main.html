@@ -44,7 +44,7 @@ home
 
       </div>  
       <div class="d-flex justify-content-end mb-3  me-4">
-        <a class="btn btn-outline-dark" href="/">kembali</a>
+        <a class="btn btn-outline-dark" href="/">Back</a>
       </div>   
 
     </div>  
@@ -58,6 +58,7 @@ home
         <thead>
           <tr class="">
            
+            <th scope="col">No</th>
             <th scope="col">Quiz</th>
             <th scope="col">User</th>
             <th scope="col">Nilai</th>
@@ -68,6 +69,7 @@ home
        
           {% for result in results %}
           <tr>
+            <td>{{ forloop.counter }}.</td>
             <td>{{ result.quiz.name }}</td>
             <td>{{ result.user.username }}</td>
             <td>{{ result.score }}</td>           
@@ -82,6 +84,11 @@ home
       {% if not results %}
       <p class="text-center text-secondary">Belum ada record data score.</p>
       {% endif %}
+      <div class="d-grid">
+        <a class="btn btn-outline-dark mt-2" href="{% url 'result-easy-view' %}">More</a>
+
+      </div>
+
     </div>
   </div>
 </div>

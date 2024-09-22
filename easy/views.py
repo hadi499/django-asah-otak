@@ -15,7 +15,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 @login_required
 def main_easy_view(request):
   easy_quiz = Easy.objects.all()
-  results = ResultEasy.objects.order_by('-score')[:3]
+  user_id = request.user.id  # Mengambil ID user yang sedang login
+  results = ResultEasy.objects.filter(user_id=user_id).order_by('-score')[:10]
   context = {
     'easy_quiz' : easy_quiz,
     'results' : results,
@@ -90,12 +91,16 @@ def save_easy_view(request, pk):
       return JsonResponse({'passed': False, 'score': score_, 'results': results})
     
 
-# @login_required
-# def result_easy(request):
-#     if request.method == 'POST' and 'delete_all' in request.POST:
-#         ResultEasy.objects.all().delete() 
-#         # return redirect('quiz:result_list') 
-#         return render(request, 'results/easy/delete_all_confirm.html')
-#     results = ResultEasy.objects.all().order_by('-score')  
-#     return render(request, 'results/easy/list.html', {'results': results})
+@login_required
+def result_easy(request):  
+  user_id = request.user.id  
+  results = ResultEasy.objects.filter(user_id=user_id).order_by('-score')   
+  return render(request, 'easy/results.html', {'results': results})
+ 
 
+def delete_results_easy(request):
+  if request.method == 'POST':
+      ResultEasy.objects.all().delete() 
+      return redirect('result-easy-view') 
+
+  return render(request, 'results/easy/delete_all_confirm.html') 

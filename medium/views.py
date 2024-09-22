@@ -15,7 +15,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 def main_medium_view(request):
   medium_quiz = Medium.objects.all()
-  results = ResultMedium.objects.order_by('-score')[:3]
+  # results = ResultMedium.objects.order_by('-score')[:10]
+  user_id = request.user.id  # Mengambil ID user yang sedang login
+  results = ResultMedium.objects.filter(user_id=user_id).order_by('-score')[:10]
+  
   context = {
     'medium_quiz' : medium_quiz,
     'results' : results,
@@ -89,14 +92,17 @@ def save_medium_view(request, pk):
     else:
       return JsonResponse({'passed': False, 'score': score_, 'results': results})
     
+@login_required
+def result_medium(request):  
+  user_id = request.user.id  
+  results = ResultMedium.objects.filter(user_id=user_id).order_by('-score')   
+  return render(request, 'medium/results.html', {'results': results})
 
-# @login_required
-# def result_medium(request):
-#     if request.method == 'POST' and 'delete_all' in request.POST:
-#         ResultMedium.objects.all().delete() 
-#         # return redirect('quiz:result_list') 
-#         return render(request, 'results/medium/delete_all_confirm.html')
-#     results = ResultMedium.objects.all().order_by('-score')  
-#     return render(request, 'results/medium/list.html', {'results': results})
+def delete_results_medium(request):
+  if request.method == 'POST':
+      ResultMedium.objects.all().delete() 
+      return redirect('result-medium-view') 
+
+  return render(request, 'results/medium/delete_all_confirm.html') 
 
 
