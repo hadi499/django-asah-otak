@@ -24,7 +24,7 @@ modalBtns.forEach(modalBtn => modalBtn.addEventListener('click', () => {
   <ul>
    
     <li>number of questions: <b>${numQuestions}</b></li>
-    <li>score to pass: <b>${scoreToPass}%</b></li>
+    <li>score to pass: <b>${scoreToPass}</b></li>
     <li>time: <b>${time}</b></li>
   </ul>
 </div>

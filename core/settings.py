@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'quiz',
     'easy',
     'medium',
-    'word',
+    
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
