@@ -10,7 +10,7 @@ home
 
 {% block content %}
 
-<div class="row">
+<div class="row mt-5">
   <div class="col-md-8 ">
     <div class="border shadow " style="width: 700px;">
       <div class="text-center p-4" style="background-color: #81DAE3 ">
@@ -68,14 +68,24 @@ home
         <tbody>
        
           {% for result in results %}
-          <tr>
-            <td>{{ forloop.counter }}.</td>
-            <td>{{ result.quiz.name }}</td>
-            <td>{{ result.user.username }}</td>
-            <td>{{ result.score }}</td>           
-          </tr>
+            {% if result.score == 100 %}
+            <tr >
+              <td class="text-primary">{{ forloop.counter }}</td>
+              <td class="text-primary">{{ result.quiz.name }}</td>
+              <td class="text-primary">{{ result.user.username }}</td>
+              <td class="text-primary">{{ result.score }}</td>           
+            </tr>
+            {% else %}
+            <tr >
+              <td class="text-danger">{{ forloop.counter }}</td>
+              <td class="text-danger">{{ result.quiz.name }}</td>
+              <td class="text-danger">{{ result.user.username }}</td>
+              <td class="text-danger">{{ result.score }}</td>           
+            </tr>
+            
+            
+            {% endif %}
           {% endfor %}
-         
          
           
         </tbody>

@@ -37,7 +37,7 @@
           </div>
           <div class="navbar-nav">
             {% if user.is_authenticated %}   
-            <span class="username nav-item nav-link border border-primary text-primary rounded me-5"><b>{{ user.username }}</b></span>        
+            <span class="username nav-item nav-link  text-primary rounded me-4"><b>{{ user.username }}</b></span>        
               <a class="nav-item nav-link tesHover rounded" href="{% url 'logout' %}">Logout</a>
             {% else %}
               <a class="nav-item nav-link tesHover rounded" href="{% url 'login' %}">Login</a>              

@@ -3,16 +3,105 @@
 
 {% block content %}
 
-<div class="row justify-content-center mt-5">
-  <div class="col-md-4 border shadow p-4">
-    <h1></h1>
-    <div class="d-grid gap-2 mb-3">
-      
-      <h4 class="text-center text-secondary">Game</h4>
-      <a class="btn btn-outline-primary" href="{% url 'main-easy-view' %}">Easy</a> 
+<div class="row justify-content-center mt-5 gap-4">
+  <div class="col-md-6 border border-primary p-4 shadow rounded">
+   
+    <h5 class="text-center text-primary">Game</h5>
+    <div class="d-grid gap-3 mb-3 border border-primary p-4 shadow">      
+      <a class="btn btn-primary" href="{% url 'main-easy-view' %}">Easy</a>
+      <a class="btn btn-primary" href="{% url 'main-medium-view' %}">Medium</a>  
+    </div>
+    <div class="mb-4 mt-5">
+      <h5 class="mb-3 text-center text-success">Score Easy 5 Terbaik</h5>
+      <table class="table border shadow">
+        <thead>
+          <tr class="">
+           
+            <th scope="col">No</th>
+            <th scope="col">Quiz</th>
+            <th scope="col">User</th>
+            <th scope="col">Nilai</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+       
+          {% for result in results_easy %}
+            {% if result.score == 100 %}
+            <tr >
+              <td class="text-primary">{{ forloop.counter }}</td>
+              <td class="text-primary">{{ result.quiz.name }}</td>
+              <td class="text-primary">{{ result.user.username }}</td>
+              <td class="text-primary">{{ result.score }}</td>           
+            </tr>
+            {% else %}
+            <tr >
+              <td class="text-danger">{{ forloop.counter }}</td>
+              <td class="text-danger">{{ result.quiz.name }}</td>
+              <td class="text-danger">{{ result.user.username }}</td>
+              <td class="text-danger">{{ result.score }}</td>           
+            </tr>
+            
+            
+            {% endif %}
+          {% endfor %}
+         
+          
+        </tbody>
+      </table>
 
-      <a class="btn btn-outline-primary" href="{% url 'main-medium-view' %}">Medium</a> 
+      {% if not results_easy %}
+      <p class="text-center text-secondary">Belum ada record data score.</p>
+      {% endif %}
       
+
+    </div>
+    <div class="mt-5">
+      <h5 class="mb-3 text-center text-warning">Score Medium 5 Terbaik</h5>
+      <table class="table border shadow">
+        <thead>
+          <tr class="">
+           
+            <th scope="col">No</th>
+            <th scope="col">Quiz</th>
+            <th scope="col">User</th>
+            <th scope="col">Nilai</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+       
+          {% for result in results_medium %}
+            {% if result.score == 100 %}
+            <tr >
+              <td class="text-primary">{{ forloop.counter }}</td>
+              <td class="text-primary">{{ result.quiz.name }}</td>
+              <td class="text-primary">{{ result.user.username }}</td>
+              <td class="text-primary">{{ result.score }}</td>           
+            </tr>
+            {% else %}
+            <tr >
+              <td class="text-danger">{{ forloop.counter }}</td>
+              <td class="text-danger">{{ result.quiz.name }}</td>
+              <td class="text-danger">{{ result.user.username }}</td>
+              <td class="text-danger">{{ result.score }}</td>           
+            </tr>
+            
+            
+            {% endif %}
+          {% endfor %}
+         
+          
+        </tbody>
+      </table>
+
+      {% if not results_medium %}
+      <p class="text-center text-secondary">Belum ada record data score.</p>
+      {% endif %}
+
+      <div class="d-flex justify-content-end mt-5">
+   
+        <a class="btn btn-outline-primary me-3" href="{% url 'result-all' %}">Result All</a>         
        
 
     </div>
@@ -22,6 +111,8 @@
 
 
   </div>
+  
 </div>
+
 
 {% endblock content %}

@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.shortcuts import render, redirect
 from .models import Medium
 from django.http import JsonResponse
@@ -9,9 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-# class EasyListView(LoginRequiredMixin,ListView):
-#   model = Easy, ResultEasy
-#   template_name = 'easy/main.html'
+
 
 def main_medium_view(request):
   medium_quiz = Medium.objects.all()
