@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+{% block scripts %}
+
+{% endblock scripts %}
+
+{% block title %}result all easy{% endblock title %}
+
+
+
+{% block content %}
+<div class="row justify-content-center mt-3">
+  
+  <div class="col-md-8">
+    <div class="d-flex justify-content-end mb-5">
+   
+        {% if request.user.is_authenticated and request.user.is_superuser %}
+        <a class="btn btn-outline-danger" href="{% url 'delete-all-easy' %}">Delete</a>         
+  
+         {% endif %}
+         <a class="btn btn-outline-dark ms-5" href="{% url 'result-all' %}">Back</a>
+
+    </div>
+  <div>
+
+    <h4 class="text-center my-3">Daftar Score Easy Level</h4>
+    <table class="table border ">
+      <thead>
+        <tr class="px-2">
+         
+          <th scope="col">No.</th>
+          <th scope="col">Quiz</th>
+          <th scope="col">User</th>
+          <th scope="col">Nilai</th>
+          <th scope="col">Created at</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for result in results_easy %}
+        {% if result.score == 100 %}
+        <tr >
+          <td class="text-primary">{{ forloop.counter }}</td>
+          <td class="text-primary">{{ result.quiz.name }}</td>
+          <td class="text-primary">{{ result.user.username }}</td>
+          <td class="text-primary">{{ result.score }}</td>           
+          <td class="text-primary">{{ result.created }}</td>           
+        </tr>
+        {% else %}
+        <tr >
+          <td class="text-danger">{{ forloop.counter }}</td>
+          <td class="text-danger">{{ result.quiz.name }}</td>
+          <td class="text-danger">{{ result.user.username }}</td>
+          <td class="text-danger">{{ result.score }}</td>           
+          <td class="text-danger">{{ result.created }}</td>           
+        </tr>
+        
+        
+        {% endif %}
+      {% endfor %}
+        
+      </tbody>
+    </table>
+
+  </div>
+
+  </div>
+  
+</div>
+
+
+
+
+
+{% endblock content %}

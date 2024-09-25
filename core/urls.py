@@ -10,6 +10,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('easy/', include('easy.urls')),
     path('medium/', include('medium.urls')),  
+    path('hard/', include('hard.urls')),  
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('accounts/login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
 ]

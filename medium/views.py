@@ -12,8 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 def main_medium_view(request):
   medium_quiz = Medium.objects.all()
-  # results = ResultMedium.objects.order_by('-score')[:10]
-  user_id = request.user.id  # Mengambil ID user yang sedang login
+  user_id = request.user.id 
   results = ResultMedium.objects.filter(user_id=user_id).order_by('-score')[:10]
   
   context = {
@@ -26,7 +25,7 @@ def main_medium_view(request):
 @login_required
 def medium_view(request,pk):
   quiz = Medium.objects.get(pk=pk)
-  print(quiz)
+  # print(quiz)
   return render(request, 'medium/quiz.html', {'obj': quiz})
 
 def medium_data_view(request, pk):
@@ -52,10 +51,10 @@ def save_medium_view(request, pk):
     data_.pop('csrfmiddlewaretoken')
 
     for k in data_.keys():
-      print('key: ', k)   
+      # print('key: ', k)   
       question = QuestionMedium.objects.get(text=k)
       questions.append(question)
-    print(questions)
+    # print(questions)
 
     user = request.user
     quiz = Medium.objects.get(pk=pk)

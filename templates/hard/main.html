@@ -1,30 +1,29 @@
 {% extends "base.html" %}
 {% load static %}
 {% block scripts %}
-<script src="{% static 'easy/main.js' %}" defer></script>
+<script src="{% static 'hard/main.js' %}" defer></script>
 {% endblock scripts %}
 
 {% block title %}
-home
+hard level
 {% endblock title %}
 
 {% block content %}
 
-
 <div class="row mt-5">
   <div class="col-sm-12 col-md-10 col-lg-8 ">
-    <div class="border shadow ">
-      <div class="text-center p-4" style="background-color: #81DAE3 ">
-        <h1 >Game Asah Otak</h1>       
-        <h3>Level : Easy</h3>
+    <div class="border shadow " >
+      <div class="text-center p-4" style="background-color: #FF7777 ">
+        <h1 >Game Asah Otak</h1>      
+        <h3>Level : Hard</h3>
 
       </div>
 
       <div class="text-start p-4">
 
-        <h4>Selamat datang, {{ user.username }}!</h4>
-        <h6>Klik salah satu menu untuk memulai !</h6>
-        {% for obj in easy_quiz %}
+        <h4>Selamat datang, {{ user.username }}</h4>
+        <h6>Klik tombol Random untuk memulai !</h6>
+        {% for obj in hard_quiz %}
         <div class="mb-3 mt-3">
           <button type="button" class="btn btn-primary modal-button"
             data-bs-toggle="modal"
@@ -41,20 +40,22 @@ home
         </div>
         {% endfor%}
 
-
-      </div>  
+        
+        
+      </div>
+      
       <div class="d-flex justify-content-end mb-3  me-4">
         <a class="btn btn-outline-dark" href="/">Back</a>
-      </div>   
+      </div> 
 
-    </div>  
-
+    </div>
 
   </div>
+
  
   <div class="col">
     <div>
-      <table class="table border shadow mt-3">
+      <table class="table border shadow mt-3 ">
         <thead>
           <tr class="">
            
@@ -66,7 +67,6 @@ home
           </tr>
         </thead>
         <tbody>
-       
           {% for result in results %}
             {% if result.score == 100 %}
             <tr >
@@ -95,32 +95,29 @@ home
       <p class="text-center text-secondary">Belum ada record data score.</p>
       {% endif %}
       <div class="d-grid">
-        <a class="btn btn-outline-dark mt-2" href="{% url 'result-easy-view' %}">More</a>
+        <a class="btn btn-outline-dark mt-2" href="{% url 'result-medium-view' %}">More</a>
 
       </div>
-
     </div>
   </div>
-
-   <!-- Modal -->
 </div>
-  <div class="modal fade" id="quizStartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-   <div class="modal-dialog">
-     <div class="modal-content">
-       <div class="modal-header">
-         <h1 class="modal-title fs-5" id="modal-title-confirm"></h1>
-         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-       </div>
-       <div class="modal-body" id="modal-body-confirm"></div>
-       <div class="modal-footer">
-         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-         <button type="button" id="start-button" class="btn btn-primary">Start</button>
-       </div>
-     </div>
-   </div>
- </div>
 
-     
+      <!-- Modal -->
+      <div class="modal fade" id="quizStartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="modal-title-confirm"></h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modal-body-confirm"></div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" id="start-button" class="btn btn-primary">Start</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 

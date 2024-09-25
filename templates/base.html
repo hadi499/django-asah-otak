@@ -16,6 +16,8 @@
     {% block title %}
     {% endblock title %}
   </title>
+
+ 
   </head>
   <body>
 
@@ -32,7 +34,7 @@
             {% endif %}
             {% if request.user.is_authenticated and request.user.is_superuser %}
            
-            <a class="nav-link tesHover rounded " aria-current="page" href="/admin">Admin</a>
+            <a class="nav-link tesHover rounded " aria-current="page" href="/admin" target="_blank">Admin</a>
             {% endif %}
           </div>
           <div class="navbar-nav">
@@ -48,10 +50,12 @@
     </nav>
 
 
-    <div class="container mt-3">
+    <div class="container mt-3" >
       {% block content %}
       {% endblock content %}
     </div>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
