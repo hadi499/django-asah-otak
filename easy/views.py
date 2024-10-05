@@ -45,6 +45,7 @@ def save_easy_view(request, pk):
   if request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
     questions = []
     data = request.POST
+    print(data)
     data_ = dict(data.lists())
 
     data_.pop('csrfmiddlewaretoken')
